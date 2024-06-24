@@ -1,35 +1,5 @@
+#include "token.h"
 #include <stdio.h>
-
-union name
-{
-    int number;
-    enum operators operator;
-};
-
-typedef struct
-{
-    int type; // neka 0 e za operator, 1 e za number
-}Token ;
-
-int *tokenization(char *str, int *token_count)
-{
-    int length = 0;
-    while (str[length] != '\0') {
-        length++;
-    }
-    //duljina na str
-
-    Token *tokens = (Token *)malloc(length * sizeof(Token)); //(Token *) e za da e ot tip struct Token
-    *token_count = 0; //
-
-    for (int i = 0; str[i] != '\0'; ++i)
-    {
-        if (str[i] >= '0' && str[i] <= '9')
-        {
-
-        }
-    }
-}
 
 int postfix_calculator(char *str)
 {
@@ -41,11 +11,34 @@ int postfix_calculator(char *str)
 int main()
 {
     char str[100];
-    union name;
     printf("Enter a postfix expression: ");
-    gets(str);
+    fgets(str, 100, stdin);
 
     int result = postfix_calculator(str);
-    printf("Result: %d\n")
+    printf("Result: %d\n");
     return 0;
 }
+
+
+/*
+
+int main(){
+    char str[] = {"pi3+e-"};
+    int token_count;
+    token_t *tokens = tokenization(str, &token_count);
+
+    for (int i=0; i < token_count; i++){
+        if (tokens[i].type == 0) {
+            printf("Operator: %d [%d]\n", tokens[i].value, i);
+        } 
+        else{
+            printf("Number: %d [%d]\n", tokens[i].value, i);
+        }
+    }
+    printf("Number of tokens: %d", token_count);
+
+    free(tokens);
+    return 0;
+}
+
+*/
