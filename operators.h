@@ -30,7 +30,7 @@ double substract(double, double);
 double multiply(double, double);
 double divide(double, double);
 double ln(double);
-double logorithm(double, double);
+double logorithm(double, double base);
 double num_pi();
 double num_e();
 #endif

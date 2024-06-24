@@ -1,44 +1,25 @@
 #include "token.h"
-#include <stdio.h>
+#include "validate_and_process.h"
 
-int postfix_calculator(char *str)
+double postfix_calculator(char *str)
 {
     int token_count = 0;
-    tokenization(str, &token_count);
-    return 1;
+    token_t* token_arr = tokenization(str, &token_count);
+    if(validate(token_arr, token_count) == 0) {
+	exit(1);
+    }
+    double result = process(token_arr, token_count);
+    free(token_arr);
+    return result;
 }
 
 int main()
 {
-    char str[100];
-    printf("Enter a postfix expression: ");
-    fgets(str, 100, stdin);
+    char str[256];
+    printf("\nEnter a postfix expression: ");
+    fgets(str, 256, stdin);
 
-    int result = postfix_calculator(str);
-    printf("Result: %d\n");
+    double result = postfix_calculator(str);
+    printf("\nResult: %lf\n", result);
     return 0;
 }
-
-
-/*
-
-int main(){
-    char str[] = {"pi3+e-"};
-    int token_count;
-    token_t *tokens = tokenization(str, &token_count);
-
-    for (int i=0; i < token_count; i++){
-        if (tokens[i].type == 0) {
-            printf("Operator: %d [%d]\n", tokens[i].value, i);
-        } 
-        else{
-            printf("Number: %d [%d]\n", tokens[i].value, i);
-        }
-    }
-    printf("Number of tokens: %d", token_count);
-
-    free(tokens);
-    return 0;
-}
-
-*/

@@ -15,9 +15,9 @@ typedef struct Stack {
 }stack_t;
 
 stack_t* initStack();
-stack_node_t* createStackNode(int value);
-void pushback(stack_t* stack, int value);
-int popback(stack_t* stack);
+stack_node_t* createStackNode(double value);
+void pushback(stack_t* stack, double value);
+double popback(stack_t* stack);
 void releaseStack(stack_t* stack);
 
 void printStack(stack_t* stack);

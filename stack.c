@@ -11,7 +11,7 @@ stack_t* initStack() {
 	return newStack;
 }
 
-stack_node_t* createStackNode(int value) {
+stack_node_t* createStackNode(double value) {
 	stack_node_t* newNode = (stack_node_t*)malloc(sizeof(stack_node_t));
 	if(newNode == NULL) {
 		printf("\nError when allocating memory for stack_node\n");
@@ -22,7 +22,7 @@ stack_node_t* createStackNode(int value) {
 	return newNode;
 }
 
-void pushback(stack_t* stack, int value) {
+void pushback(stack_t* stack, double value) {
 	if(stack == NULL) return ;
 	if(stack->head == NULL) {
 		stack->head = createStackNode(value);
@@ -37,13 +37,13 @@ void pushback(stack_t* stack, int value) {
 	stack->size++;
 }
 
-int popback(stack_t* stack) {
+double popback(stack_t* stack) {
 	if(stack == NULL) return 0;
 	if(stack->head == NULL) {
 		printf("\nStack is empty\n");
 		return 0;
 	}
-	int result;
+	double result;
 	if(stack->head->next == NULL) {
 		result = stack->head->value;
 		free(stack->head);
