@@ -1,4 +1,8 @@
-all: token.o operators.o stack.o validate_and_process.o postfix_calculator.exe postfix_calculator.out
+all: token.o operators.o stack.o validate_and_process.o postfix_calculator.exe
+
+windows: token.o operators.o stack.o validate_and_process.o postfix_calculator.exe
+
+linux: token.o operators.o stack.o validate_and_process.o postfix_calculator.out
 
 token.o: token.h token.c
 	gcc -c token.c
@@ -16,10 +20,10 @@ postfix_calculator.exe: token.o validate_and_process.o postfix_calculator.c
 	gcc postfix_calculator.c token.o operators.o stack.o validate_and_process.o -o postfix_calculator.exe
 
 postfix_calculator.out: token.o validate_and_process.o postfix_calculator.c
-	gcc postfix_calculator.c token.o operators.o stack.o validate_and_process.o -o postfix_calculator.out
+	gcc postfix_calculator.c token.o operators.o stack.o validate_and_process.o -lm -o postfix_calculator.out
 
-clean1:
+cleanWin:
 	del -f *.o *.exe *.out
 
-clean2:
+cleanLin:
 	rm -f *.o *.exe *.out
